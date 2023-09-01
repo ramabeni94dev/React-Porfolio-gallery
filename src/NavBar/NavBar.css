@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Raleway:wght@100&display=swap");
+
+/* Aplicar fuentes personalizadas a los elementos */
+.navbar {
+  font-family: "Kanit", sans-serif; /* Cambiar a la fuente Kanit */
+  letter-spacing: 7px;
+}
+
+.navbar-brand {
+  font-family: "Raleway", sans-serif; /* Cambiar a la fuente Raleway */
+  letter-spacing: 7px;
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .nav-dropdown .nav-link {
+  font-family: "Kanit", sans-serif; /* Cambiar a la fuente Kanit */
+  letter-spacing: 7px;
+}
+
+.navbar-nav .nav-dropdown .dropdown-item {
+  font-family: "Raleway", sans-serif; /* Cambiar a la fuente Raleway */
+  letter-spacing: 7px;
+}
+
+.custom-nav-dropdown {
+  border-radius: 5px; /* Redondea los bordes */
+
+  &:hover {
+    background-color: #929495; /* Cambia el color de fondo en el hover */
+    animation: fadeInDown 1s ease; /* Aplica una animación de entrada */
+  }
+  &.show {
+    background-color: #929495; /* Cambia el color de fondo al desplegar */
+    animation: fadeIn 0.5s ease;
+  }
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

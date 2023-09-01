@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css");
-
 body {
+  background-color: wheat;
+}
+
+/* Aplica estilos globales */
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
   background-color: black;
 }

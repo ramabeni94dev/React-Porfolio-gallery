@@ -3,6 +3,7 @@ import ReactModal from "react-modal";
 import ReactPlayer from "react-player";
 import "./GalleryApp.css"; // Importa tus estilos CSS aquí
 import { Container, Row, Col } from "react-bootstrap";
+import items from "./GalleryData";
 
 function GalleryApp() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,75 +12,7 @@ function GalleryApp() {
     width: 0,
     height: 0,
   });
-
-  const items = [
-    {
-      type: "image",
-      source: "src/assets/img/flyers/0fUwpaD2v5Mgk7OInqX4Xn;1215x2160.png",
-    },
-    {
-      type: "image",
-      source: "src/assets/img/flyers/4hQF04mugaAcTwuMysHJmJ;1080x1920.png",
-    },
-    {
-      type: "image",
-      source: "src/assets/img/flyers/9Qs5AnRWCPYeeqdygaYplQ;731x1300.png",
-    },
-    {
-      type: "image",
-      source: "src/assets/img/flyers/a5vygOntLOLgaeJy8IOpPc;1080x1920.png",
-    },
-    {
-      type: "image",
-      source: "src/assets/img/flyers/dkn3QARk6qMfj3kCofnPVO;1080x1920.png",
-    },
-    {
-      type: "image",
-      source: "src/assets/img/flyers/dUYoyo5T0puf5PIfvKnXbc;1080x1920.png",
-    },
-    {
-      type: "image",
-      source: "src/assets/img/flyers/dx1Zv8MfkpsfujrYv2UeW4;1080x1920.png",
-    },
-    {
-      type: "image",
-      source: "src/assets/img/flyers/fJ9DbTgSGNfc3Dvyk0eJ1C;1080x1920.png",
-    },
-    {
-      type: "image",
-      source: "src/assets/img/flyers/grLufThffn9b2ecvKgtyz8;1080x1920.png",
-    },
-    {
-      type: "video",
-      thumbnail: "src/assets/videos/Captura de pantalla 2023-08-29 120546.png",
-      source: "src/assets/videos/PREMOVIE ELLA 05.11.mp4",
-    },
-    {
-      type: "video",
-      thumbnail: "src/assets/videos/Captura de pantalla 2023-08-29 120840.png",
-      source: "src/assets/videos/PREMOVIE GREYGOOSE 08.10.mp4",
-    },
-    {
-      type: "video",
-      thumbnail: "src/assets/videos/Captura de pantalla 2023-08-29 120748.png",
-      source: "src/assets/videos/PREMOVIE ELLA 08.03.mp4",
-    },
-    {
-      type: "video",
-      thumbnail: "src/assets/videos/Captura de pantalla 2023-08-29 120546.png",
-      source: "src/assets/videos/PREMOVIE ELLA 05.11.mp4",
-    },
-    {
-      type: "video",
-      thumbnail: "src/assets/videos/Captura de pantalla 2023-08-29 120840.png",
-      source: "src/assets/videos/PREMOVIE GREYGOOSE 08.10.mp4",
-    },
-    {
-      type: "video",
-      thumbnail: "src/assets/videos/Captura de pantalla 2023-08-29 120748.png",
-      source: "src/assets/videos/PREMOVIE ELLA 08.03.mp4",
-    },
-  ];
+  const [isMouseOverLightbox, setIsMouseOverLightbox] = useState(false);
 
   const [currentItemIndex, setCurrentItemIndex] = useState(null);
 
@@ -111,9 +44,17 @@ function GalleryApp() {
     }
   };
 
+  const handleMouseEnterLightbox = () => {
+    setIsMouseOverLightbox(true);
+  };
+
+  const handleMouseLeaveLightbox = () => {
+    setIsMouseOverLightbox(false);
+  };
+
   useEffect(() => {
     if (modalContent && modalContent.type === "video") {
-      const modalContentAspectRatio = 16 / 9; // Relación de aspecto del video
+      const modalContentAspectRatio = 9 / 16; // Relación de aspecto del video
       const maxWidth = window.innerWidth * 0.8; // Ancho máximo permitido
       const maxHeight = window.innerHeight * 0.8; // Alto máximo permitido
 
@@ -132,10 +73,10 @@ function GalleryApp() {
   return (
     <>
       <h1 className="titulo">FILMMAKING</h1>
-      <Container fluid>
-        <Row>
+      <Container>
+        <Row className="custom-row-spacing">
           {items.map((item, index) => (
-            <Col key={item.id} xs={12} sm={6} md={4}>
+            <Col key={item.id} xs={6} sm={4} md={4}>
               <div className="gallery-item" onClick={() => openModal(index)}>
                 {item.type === "image" ? (
                   <img src={item.source} alt={`Item ${item.id}`} />
@@ -149,6 +90,7 @@ function GalleryApp() {
           ))}
         </Row>
       </Container>
+
       <ReactModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -175,7 +117,11 @@ function GalleryApp() {
         }}
       >
         {modalContent && (
-          <div className="lightbox-content">
+          <div
+            className="lightbox-content"
+            onMouseEnter={handleMouseEnterLightbox}
+            onMouseLeave={handleMouseLeaveLightbox}
+          >
             {modalContent.type === "image" ? (
               <img src={modalContent.source} alt={`Lightbox Item`} />
             ) : (
@@ -199,14 +145,43 @@ function GalleryApp() {
                 }}
               />
             )}
-            <button className="prev-button" onClick={prevItem}>
-              ‹ {/* Flecha hacia la izquierda */}
+            <button
+              className={`prev-button ${isMouseOverLightbox ? "visible" : ""}`}
+              onClick={prevItem}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-caret-left"
+                viewBox="0 0 16 16"
+              >
+                <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z" />
+              </svg>{" "}
+              {/* Flecha hacia la izquierda */}
             </button>
-            <button className="next-button" onClick={nextItem}>
-              › {/* Flecha hacia la derecha */}
+            <button
+              className={`next-button ${isMouseOverLightbox ? "visible" : ""}`}
+              onClick={nextItem}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-caret-right"
+                viewBox="0 0 16 16"
+              >
+                <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z" />
+              </svg>{" "}
+              {/* Flecha hacia la derecha */}
             </button>
 
-            <button className="close-button" onClick={closeModal}>
+            <button
+              className={`close-button ${isMouseOverLightbox ? "visible" : ""}`}
+              onClick={closeModal}
+            >
               &#x2716;
             </button>
           </div>

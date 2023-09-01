@@ -10,7 +10,9 @@
   align-items: center;
   height: 100%; /* O ajusta la altura según tus necesidades */
   font-family: "Raleway", sans-serif; /* Aplicar la fuente */
-  letter-spacing: 3px; /* Ajusta el valor según el espaciado deseado */
+  font-weight: bold;
+  letter-spacing: 10px; /* Ajusta el valor según el espaciado deseado */
+  padding: 80px 0; /* Agregar espaciado superior e inferior de 20px */
 }
 
 .container-fluid {
@@ -28,15 +30,7 @@
   position: relative;
   flex-basis: calc(33.33% - 20px); /* Ancho de 33.33% menos el margen */
   margin: 10px;
-}
-
-.gallery-image {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  display: flex;
-  border-radius: 10px;
-  /* Ajusta otros estilos según sea necesario */
+  box-sizing: border-box; /* Incluimos el padding en el ancho total del elemento */
 }
 
 .gallery-item:hover {
@@ -50,7 +44,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .gallery-item:hover img {
@@ -90,17 +84,29 @@
 }
 
 .ReactModal__Content {
-  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+  transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+
   border: none;
   background: transparent;
   padding: 0;
   top: 50%; /* Centra verticalmente */
   left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Centra completamente */
+  animation: openModal 500ms ease-in-out;
   max-width: 90%;
   max-height: 90%;
   border-radius: 5px; /* Bordes más suaves */
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Sombra suave */
+}
+
+@keyframes openModal {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .ReactModal__Content--after-open {
@@ -131,9 +137,14 @@
   margin: auto;
 }
 
+.visible {
+  display: block !important;
+}
+
 .prev-button,
 .next-button,
 .close-button {
+  display: none;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
@@ -157,13 +168,13 @@
 }
 
 .prev-button {
-  left: 20px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
 }
 
 .next-button {
-  right: 20px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -171,7 +182,12 @@
 .close-button {
   top: 20px;
   right: 20px;
-  font-size: 24px;
+  font-size: 12px;
+  display: none;
 }
 
 /* GalleryApp.css */
+
+.custom-row-spacing {
+  margin-bottom: 100px; /* Ajusta este valor según tus necesidades */
+}
