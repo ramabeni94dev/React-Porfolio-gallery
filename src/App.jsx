@@ -3,6 +3,7 @@ import React from "react";
 import NavbarComponent from "./NavBar/NavBar";
 
 import GalleryApp from "./gallery/GalleryApp";
+import Footer from "./Footer/Footer";
 
 function App() {
   return (
@@ -10,8 +11,11 @@ function App() {
       <div>
         <NavbarComponent />
       </div>
-      <div>
+      <div className="galeria">
         <GalleryApp />
+      </div>
+      <div>
+        <Footer />
       </div>
     </>
   );

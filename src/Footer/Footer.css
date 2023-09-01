@@ -1,0 +1,49 @@
+/* Footer.css */
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Raleway:wght@100&display=swap");
+.custom-footer {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}
+
+.logo {
+  max-width: 150px; /* Ajusta el tamaño de tu logotipo según sea necesario */
+  display: block;
+  margin: 0 auto; /* Centra el logotipo horizontalmente */
+}
+
+.brand {
+  font-size: 12px; /* Tamaño del texto de la marca registrada */
+  margin-top: 20px; /* Espacio entre la marca registrada y el contenido superior */
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+
+/* Footer.css */
+
+/* ... Otros estilos ... */
+
+.instagram-logo {
+  max-width: 60px; /* Ajusta el tamaño del logotipo de Instagram según sea necesario */
+  margin-top: 10px; /* Espacio entre el logotipo y el enlace de Instagram */
+  display: block; /* Cambia el elemento a un bloque para centrar verticalmente */
+  margin: 0 auto; /* Centra horizontalmente */
+  transition: transform 0.3s ease; /* Agrega una transición suave para la propiedad transform */
+}
+
+/* Agrega la animación 'bounce' en respuesta al hover */
+.instagram-logo:hover {
+  transform: translateY(-10px); /* Desplazamiento hacia arriba al hacer hover */
+}
+
+.social-links {
+  margin-top: 20px; /* Ajusta la cantidad de espacio que deseas entre los elementos */
+}
+
+.location {
+  margin-top: 20px;
+  letter-spacing: 7px;
+  font-weight: bold;
+}
